@@ -30,7 +30,9 @@ class MjmlClientFactory implements FactoryInterface
             ],
         ]);
 
-        CacheSubscriber::attach($client);
+        if (class_exists('GuzzleHttp\\Subscriber\\Cache\\CacheSubscriber')) {
+            CacheSubscriber::attach($client);
+        }
 
         return $client;
     }
@@ -52,7 +54,9 @@ class MjmlClientFactory implements FactoryInterface
             ],
         ]);
 
-        CacheSubscriber::attach($client);
+        if (class_exists('GuzzleHttp\\Subscriber\\Cache\\CacheSubscriber')) {
+            CacheSubscriber::attach($client);
+        }
 
         return $client;
     }
