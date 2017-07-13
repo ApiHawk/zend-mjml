@@ -19,16 +19,19 @@ class Mjml
 
     protected $transport;
 
+    protected $host;
+
     /**
      * @param  GuzzleHttp\ClientInterface $client
      * @param  Zend\View\Renderer\RendererInterface $client
      * @param  Zend\Mail\Transport\TransportInterface $transport
      */
-    public function __construct(ClientInterface $client, RendererInterface $renderer, TransportInterface $transport = null)
+    public function __construct(ClientInterface $client, RendererInterface $renderer, TransportInterface $transport = null, $host)
     {
-        $this->client = $client;
-        $this->renderer = $renderer;
+        $this->client    = $client;
+        $this->renderer  = $renderer;
         $this->transport = $transport;
+        $this->host      = $host;
     }
 
     /**
@@ -124,7 +127,7 @@ class Mjml
     protected function mjmlToHtml($mjml, $saveTemplate = false)
     {
         try {
-            $result = $this->client->post('render', [
+            $result = $this->client->post($this->host.'/render', [
                 'form_params' => [
                     'src' => $mjml,
                     'save' => $saveTemplate,

@@ -35,7 +35,7 @@ class MjmlFactory implements FactoryInterface
             throw new \Exception('Transport Adapter cannot be found.');
         }
 
-        return new Mjml($httpClient, $renderer, $transport);
+        return new Mjml($httpClient, $renderer, $transport,$config['mjmlServiceUrl']);
     }
 
     /**
