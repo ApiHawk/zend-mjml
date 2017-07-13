@@ -125,7 +125,7 @@ class Mjml
     {
         try {
             $result = $this->client->post('render', [
-                'body' => [
+                'form_params' => [
                     'src' => $mjml,
                     'save' => $saveTemplate,
                 ],
